@@ -4,8 +4,14 @@ DOCKER=docker
 IMAGE_NAME=defcon32-summarizer
 CONTAINER_NAME=defcon32-summarizer-container
 MIRROR_DIR=defcon32-media
+VENV := .venv
+DRILLS_DIR := research/flashcards
 
-.PHONY: install run test clean build docker-build docker-test docker-run docker-mirror help mirror check-env
+.PHONY: all env setup publish deploy clean check help
+
+# Default target
+all: help
+
 .DEFAULT_GOAL := help
 
 # Help
@@ -20,6 +26,18 @@ help:
 		} \
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
+
+# Named virtual environment 
+setup: $(VENV)
+
+# Environment and setup
+$(VENV):
+	@echo "Setting up environment..."
+	@$(PYTHON) -m venv $(VENV)
+	@. $(VENV)/bin/activate
+	@$(PIP) install -r requirements.txt
+	@echo "Environment setup complete! Run 'source .venv/bin/activate' to activate the virtual environment."
+
 
 # Install dependencies
 install:
@@ -42,6 +60,8 @@ test:
 
 # Clean up
 clean:
+	@echo "Cleaning up..."
+	@rm -rf $(VENV)
 	find . -type f -name '*.pyc' -delete
 	find . -type d -name '__pycache__' -delete
 	rm -rf .pytest_cache

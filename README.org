@@ -1,0 +1,80 @@
+#+TITLE: DEF CON 32 Talk Summarizer
+
+* Introduction
+This project aims to securely mirror and summarize talks from DEF CON 32 using AI-powered text analysis. It provides a containerized environment for processing PDF documents of conference talks and generating concise summaries.
+
+* Features
+- Secure mirroring of DEF CON 32 content
+- PDF processing and text extraction
+- AI-powered summarization using Ollama API
+- Containerized execution for improved security and portability
+- Comprehensive test suite
+
+* Prerequisites
+- Docker
+- Ollama API running locally (for summarization)
+- Make (for using the provided Makefile)
+
+* Setup
+** Clone the repository
+#+BEGIN_SRC sh
+git clone https://github.com/yourusername/defcon32-talk-summarizer.git
+cd defcon32-talk-summarizer
+#+END_SRC
+
+** Build the Docker image
+#+BEGIN_SRC sh
+make docker-build
+#+END_SRC
+
+* Usage
+** Mirror DEF CON 32 content
+#+BEGIN_SRC sh
+make docker-mirror
+#+END_SRC
+
+** Run the summarizer
+#+BEGIN_SRC sh
+make docker-run
+#+END_SRC
+
+** Run tests
+#+BEGIN_SRC sh
+make docker-test
+#+END_SRC
+
+* Configuration
+- Modify =prompt_defcon_talk_summary_pqrst.tmpl= to adjust the summarization prompt.
+- Update =requirements.txt= if you need to add or modify Python dependencies.
+
+* Development
+- The main summarization logic is in =src/summarizer.py=.
+- Tests are located in the =tests= directory.
+- Use the Makefile for common development tasks (e.g., =make test=, =make clean=).
+
+* Contributing
+Contributions to improve the DEF CON 32 Talk Summarizer are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes and commit them with clear, descriptive messages
+4. Push your changes to your fork
+5. Submit a pull request with a clear description of your changes
+
+Ensure your code adheres to the existing style and passes all tests. Add or update tests as necessary for new features or bug fixes.
+
+* Security Considerations
+This tool is designed to process potentially sensitive content. Always review the generated summaries before sharing or publishing them. Ensure you have permission to access and process DEF CON 32 content before using this tool.
+
+* License
+This project is licensed under the MIT License. See the [[file:LICENSE][LICENSE]] file for details.
+
+* Disclaimer
+This tool is not officially affiliated with DEF CON. Use it responsibly and in accordance with DEF CON's terms of service and any applicable laws or regulations.
+
+* Acknowledgments
+- DEF CON for providing the conference content
+- Ollama for the AI summarization capabilities
+
+* Support
+For any issues or questions regarding the DEF CON 32 Talk Summarizer, please open an issue on the GitHub repository or contact the maintainers at [insert contact information].
